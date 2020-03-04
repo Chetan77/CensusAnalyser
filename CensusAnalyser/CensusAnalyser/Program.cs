@@ -11,8 +11,8 @@ namespace CensusAnalyser
             /*int v = StateCensusAnalyser.GetRecordsUsingEnumeratorIterator(path);
             Console.WriteLine(v);
             Console.WriteLine(CSVStateCensus.GetNumberOfRecords(path));*/
-            /*var fi= StateCensusAnalyser.GetRecordsUsingEnumeratorIterator(@"C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyser\FileData\StateCensusDa.csv");
-            Console.WriteLine( fi.ToString());*/
+            var fi = StateCensusAnalyser.GetRecordsUsingEnumeratorIterator(@"C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyser\FileData\StateCensusDa.csv");
+            Console.WriteLine(fi.ToString());
         }
     }
 }
