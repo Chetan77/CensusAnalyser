@@ -91,3 +91,6 @@ C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyserTestUnit\obj\Debug\net
 C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyserTestUnit\obj\Debug\netcoreapp3.1\CensusAnalyserTestUnit.csproj.CopyComplete
 C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyserTestUnit\obj\Debug\netcoreapp3.1\CensusAnalyserTestUnit.dll
 C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyserTestUnit\obj\Debug\netcoreapp3.1\CensusAnalyserTestUnit.pdb
+C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyserTestUnit\bin\Debug\netcoreapp3.1\CensusAnalyser.exe
+C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyserTestUnit\bin\Debug\netcoreapp3.1\CensusAnalyser.dll
+C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyserTestUnit\bin\Debug\netcoreapp3.1\CensusAnalyser.pdb

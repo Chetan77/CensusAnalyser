@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace CensusAnalyser
 {
-    class CSVStateCensus
+    public class CSVStateCensus
     {
+        public static int GetNumberOfRecords(string path)
+        {
+            string[] data = File.ReadAllLines(path);
+            return data.Length;
+        }
     }
 }
