@@ -13,8 +13,8 @@ namespace CensusAnalyserTestUnit
         public void GiventheStatesCensusCSVfile_WhenAnalyse_ShouldRecordNumberOfRecordmatches()
         {
             int count1 = StateCensusAnalyser.GetRecordsUsingEnumeratorIterator(path);
-            int count2 = CSVStateCensus.GetNumberOfRecords(path);
-            Assert.AreEqual(count1, count2);
+            Assert.AreEqual(30, count1);
         }
+        
     }
 }
