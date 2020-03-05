@@ -46,5 +46,16 @@ namespace CensusAnalyserTestUnit
             var incorrectDelimiter = Assert.Throws<CensusAnalyserException>(() => StateCensusAnalyser.GetRecordsUsingEnumeratorIterator(path,'.'));
             Assert.AreEqual("Incorrect Delimiter",incorrectDelimiter.GetMessage);
         }
+
+        /// <summary>
+        /// Given the incorrect header when analyse should throw census analyser exception
+        /// </summary>
+        [Test]
+        public void GivenIncorrectHeader_WhenAnalyse_ShouldThrowCensusAnalyserException()
+        {
+            var incorrectHeader = Assert.Throws<CensusAnalyserException>(
+                () => StateCensusAnalyser.GetRecordsUsingEnumeratorIterator(path,',', "Ste,Population,AreaInSqKm,DensityPerSqKm"));
+            Assert.AreEqual("Incorrect header",incorrectHeader.GetMessage);
+        }
     }
 }

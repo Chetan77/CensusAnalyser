@@ -7,7 +7,7 @@ namespace CensusAnalyser
 {
     public class StateCensusAnalyser
     {
-        public static int GetRecordsUsingEnumeratorIterator(string path,char delimiter=',')
+        public static int GetRecordsUsingEnumeratorIterator(string path,char delimiter=',',string header= "State,Population,AreaInSqKm,DensityPerSqKm")
         {
             int count = 0;
             try
@@ -22,6 +22,10 @@ namespace CensusAnalyser
                         {
                             throw new CensusAnalyserException("Incorrect Delimiter");
                         }
+                    }
+                    if (!data[0].Equals(header))
+                    {
+                        throw new CensusAnalyserException("Incorrect header");
                     }
                     IEnumerable<string> ele = data;
                     foreach (var elements in ele)
