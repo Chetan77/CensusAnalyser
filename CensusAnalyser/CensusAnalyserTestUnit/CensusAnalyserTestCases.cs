@@ -44,7 +44,7 @@ namespace CensusAnalyserTestUnit
         [Test]
         public void GivenIncorrectDelimiter_WhenAnalyse_ShouldThrowCensusAnalyserException()
         {
-            var incorrectDelimiter = Assert.Throws<CensusAnalyserException>(() => StateCensusAnalyser.GetRecordsUsingEnumeratorIterator(path,'.'));
+            var incorrectDelimiter = Assert.Throws<CensusAnalyserException>(() => CSVStateCensus.ToGetDataFromCSVFile(path,'.'));
             Assert.AreEqual("Incorrect Delimiter",incorrectDelimiter.GetMessage);
         }
 
