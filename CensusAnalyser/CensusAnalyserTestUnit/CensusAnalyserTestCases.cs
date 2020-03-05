@@ -55,7 +55,7 @@ namespace CensusAnalyserTestUnit
         public void GivenIncorrectHeader_WhenAnalyse_ShouldThrowCensusAnalyserException()
         {
             var incorrectHeader = Assert.Throws<CensusAnalyserException>(
-                () => StateCensusAnalyser.GetRecordsUsingEnumeratorIterator(path,',', "Ste,Population,AreaInSqKm,DensityPerSqKm"));
+                () => CSVStateCensus.ToGetDataFromCSVFile(path,',', "Ste,Population,AreaInSqKm,DensityPerSqKm"));
             Assert.AreEqual("Incorrect header",incorrectHeader.GetMessage);
         }
 
