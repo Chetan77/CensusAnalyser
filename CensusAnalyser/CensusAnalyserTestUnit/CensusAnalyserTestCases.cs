@@ -34,7 +34,7 @@ namespace CensusAnalyserTestUnit
         [Test]
         public void GivenIncorrectfileType_WhenAnalyse_ShouldThrowCensusuAnalyserException()
         {
-            var incorrectpath = Assert.Throws<CensusAnalyserException>(() => StateCensusAnalyser.GetRecordsUsingEnumeratorIterator(@"C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyser\FileData\StateCensusDa.csvrrr"));
+            var incorrectpath = Assert.Throws<CensusAnalyserException>(() => CSVStateCensus.ToGetDataFromCSVFile(@"C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyser\FileData\StateCensusDa.csvrrr"));
             Assert.AreEqual("File type incorrect", incorrectpath.GetMessage);
         }
 
