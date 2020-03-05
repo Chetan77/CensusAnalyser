@@ -9,12 +9,16 @@ namespace CensusAnalyser
 {
     public class CSVStateCensus
     {
-       /* public static int GetNumberOfRecords(string path)
+       public static int ToGetDataFromCSVFile(string path)
         {
-            TextFieldParser textFieldParser = new TextFieldParser(new StringReader(path));
-            CsvParser csvParser = new CsvParser(textFieldParser);
-            CsvReader reader = new CsvReader(File.OpenText(textFieldParser));
-            CsvHelper helper = new CsvHelper(path);
-        }*/
+            int count = 0;
+            string[] data = File.ReadAllLines(path);
+            IEnumerable<string> ele = data;
+            foreach (var elements in data)
+            {
+                count++;
+            }
+            return count;
+        }
     }
 }

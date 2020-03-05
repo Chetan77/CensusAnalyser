@@ -14,7 +14,8 @@ namespace CensusAnalyserTestUnit
         public void GiventheStatesCensusCSVfile_WhenAnalyse_ShouldRecordNumberOfRecordmatches()
         {
             int count1 = StateCensusAnalyser.GetRecordsUsingEnumeratorIterator(path);
-            Assert.AreEqual(30, count1);
+            int count2 = CSVStateCensus.ToGetDataFromCSVFile(path);
+            Assert.AreEqual(count1, count2);
         }
 
         /// <summary>
@@ -26,10 +27,10 @@ namespace CensusAnalyserTestUnit
             var exc = Assert.Throws<CensusAnalyserException>(() => StateCensusAnalyser.GetRecordsUsingEnumeratorIterator(@"C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyser\FileData\StateCensusDa.csv"));
             Assert.AreEqual("file path incorrect", exc.GetMessage);
         }
+
         /// <summary>
         /// Givens the incorrectfile type when analyse should throw censusu analyser exception.
         /// </summary>
-        
         [Test]
         public void GivenIncorrectfileType_WhenAnalyse_ShouldThrowCensusuAnalyserException()
         {
@@ -57,5 +58,6 @@ namespace CensusAnalyserTestUnit
                 () => StateCensusAnalyser.GetRecordsUsingEnumeratorIterator(path,',', "Ste,Population,AreaInSqKm,DensityPerSqKm"));
             Assert.AreEqual("Incorrect header",incorrectHeader.GetMessage);
         }
+
     }
 }
