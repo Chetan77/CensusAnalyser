@@ -13,13 +13,10 @@ namespace CensusAnalyser
         {
             try
             {
-                if (Path.GetExtension(path) == ".csv")
-                {
                     int count = 0;
-                    string[] data = File.ReadAllLines(path);
+                    string[] data = ReadCsvFile(path);
                     foreach (string str in data)
                     {
-
                         if (str.Split(delimiter).Length != 4 && str.Split(delimiter).Length != 2)
                         {
                             throw new CensusAnalyserException("Incorrect Delimiter");
@@ -35,16 +32,30 @@ namespace CensusAnalyser
                         count++;
                     }
                     return count;
-                }
-                else
+            }
+            catch (CensusAnalyserException)
+            {
+                throw;
+            }
+        }
+        public static string[] ReadCsvFile(string path)
+        {
+            try
+            {
+                if (Path.GetExtension(path).Equals(".csv"))
                 {
-                    throw new CensusAnalyserException("File type incorrect");
+                    string[] arr = File.ReadAllLines(path);
+                    return arr;
                 }
+                throw new CensusAnalyserException("File type incorrect");
             }
             catch (FileNotFoundException)
             {
-
                 throw new CensusAnalyserException("file path incorrect");
+            }
+            catch (CensusAnalyserException)
+            {
+                throw;
             }
         }
     }

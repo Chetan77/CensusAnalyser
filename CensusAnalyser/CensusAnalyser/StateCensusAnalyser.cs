@@ -7,18 +7,17 @@ namespace CensusAnalyser
 {
     public class StateCensusAnalyser
     {
-        public static int GetRecordsUsingEnumeratorIterator(string path,char delimiter=',',string header= "State,Population,AreaInSqKm,DensityPerSqKm")
+        public static int GetRecordsUsingEnumeratorIterator(string path, char delimiter = ',', string header = "State,Population,AreaInSqKm,DensityPerSqKm")
         {
             int count = 0;
             try
             {
-                if (Path.GetExtension(path)==".csv")
+                if (Path.GetExtension(path) == ".csv")
                 {
                     string[] data = File.ReadAllLines(path);
-                    foreach(string str in data)
+                    foreach (string str in data)
                     {
-
-                        if(str.Split(delimiter).Length !=4 && str.Split(delimiter).Length != 2)
+                        if (str.Split(delimiter).Length != 4 && str.Split(delimiter).Length != 2)
                         {
                             throw new CensusAnalyserException("Incorrect Delimiter");
                         }
