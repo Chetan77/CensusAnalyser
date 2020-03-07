@@ -5,7 +5,7 @@ namespace CensusAnalyser
 {
     public class CSVStateCensus
     {
-        public static int ToGetDataFromCSVFileUsigEnumerator(string path,char delimiter=',')
+        public static int ToGetDataFromCSVFileUsigEnumerator(string path,char delimiter=',',string header="State,Population,AreaInSqKm,DensityPerSqKm")
         {
             int count = 0;
             try
@@ -21,6 +21,10 @@ namespace CensusAnalyser
                     {
                         throw new CensusAnalyserException("incorrect delimiter");
                     }
+                }
+                if (!data[0].Equals(header))
+                {
+                    throw new CensusAnalyserException("incorrect header");
                 }
                 IEnumerable<string> ele = data;
                 foreach (var elements in data)
