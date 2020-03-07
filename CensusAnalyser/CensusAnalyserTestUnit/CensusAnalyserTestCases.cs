@@ -60,5 +60,15 @@ namespace CensusAnalyserTestUnit
             var headerIncorrect = Assert.Throws<CensusAnalyserException>(() => CSVStateCensus.ToGetDataFromCSVFileUsigEnumerator(path, ',', "State,"));
             Assert.AreEqual("incorrect header", headerIncorrect.GetMessage);
         }
+
+        private string stateCodePath=@"C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyser\FileData\StateCode.csv";
+
+        [Test]
+        public void GivenCSVStateCodeFile_WhenAnalyse_ReturnNumberOfRecordsMatch()
+        {
+            int count1 = StateCensusAnalyser.GetRecordsFromCSVFile(stateCodePath);
+            int count2 = CSVStates.GetRecordsFromStateCodeCSV(stateCodePath);
+            Assert.AreEqual(count1, count2);
+        }
     }
 }
