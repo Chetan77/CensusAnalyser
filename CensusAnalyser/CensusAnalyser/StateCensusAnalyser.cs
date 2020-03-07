@@ -7,6 +7,7 @@ namespace CensusAnalyser
 {
     public class StateCensusAnalyser
     {
+        public delegate int GetCountFromStateCensusAnalyser(string path);
         public static int GetRecordsFromCSVFile(string path)
         {
             string[] array = File.ReadAllLines(path);
