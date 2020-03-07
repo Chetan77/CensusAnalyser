@@ -10,13 +10,20 @@ namespace CensusAnalyser
         public static int GetRecordsFromStateCodeCSV(string path)
         {
             int count = 0;
-            string[] records = File.ReadAllLines(path);
-            IEnumerable<string> enumerator = records;
-            foreach(string str in enumerator)
+            try
             {
-                count++;
+                string[] records = File.ReadAllLines(path);
+                IEnumerable<string> enumerator = records;
+                foreach (string str in enumerator)
+                {
+                    count++;
+                }
+                return count;
             }
-            return count;
+            catch (FileNotFoundException)
+            {
+                throw new CensusAnalyserException("file incorrect");
+            }
         }
     }
 }
