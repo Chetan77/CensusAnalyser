@@ -40,5 +40,12 @@ namespace CensusAnalyserTestUnit
             var typeIncorrect = Assert.Throws<CensusAnalyserException>(() => CSVStateCensus.ToGetDataFromCSVFileUsigEnumerator(fileTypeIncorrect));
             Assert.AreEqual("file type incorrect", typeIncorrect.GetMessage);
         }
+
+        [Test]
+        public void GivenTheStateCesnusCsvFileDelimiterIncorrect_WhenAnalyse_ThrowcensusAnalyserException()
+        {
+            var delimiterIncorrect = Assert.Throws<CensusAnalyserException>(() => CSVStateCensus.ToGetDataFromCSVFileUsigEnumerator(path, '.'));
+            Assert.AreEqual("incorrect delimiter", delimiterIncorrect.GetMessage);
+        }
     }
 }
