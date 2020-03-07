@@ -92,5 +92,11 @@ namespace CensusAnalyserTestUnit
             var delimiterIncorrect = Assert.Throws<CensusAnalyserException>(() => CSVStates.GetRecordsFromStateCodeCSV(path, '.'));
             Assert.AreEqual("incorrect delimiter", delimiterIncorrect.GetMessage);
         }
+        [Test]
+        public void GivenTheCSVStateCodeFileHeaderIncorrect_WhenAnalyse_ThrowCensusAnalyserException()
+        {
+            var headerIncorrect = Assert.Throws<CensusAnalyserException>(() => CSVStates.GetRecordsFromStateCodeCSV(path, ',', "State,"));
+            Assert.AreEqual("incorrect header", headerIncorrect.GetMessage);
+        }
     }
 }
