@@ -7,7 +7,7 @@ namespace CensusAnalyser
 {
     public class CSVStates
     {
-        public static int GetRecordsFromStateCodeCSV(string path)
+        public static int GetRecordsFromStateCodeCSV(string path,char delimiter=',')
         {
             int count = 0;
             try
@@ -17,6 +17,13 @@ namespace CensusAnalyser
                     throw new CensusAnalyserException("file type incorrect");
                 }
                 string[] records = File.ReadAllLines(path);
+                foreach (string str in records)
+                {
+                    if (str.Split(delimiter).Length != 5 && str.Split(delimiter).Length !=4)
+                    {
+                        throw new CensusAnalyserException("incorrect delimiter");
+                    }
+                }
                 IEnumerable<string> enumerator = records;
                 foreach (string str in enumerator)
                 {
