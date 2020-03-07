@@ -10,6 +10,10 @@ namespace CensusAnalyser
             int count = 0;
             try
             {
+                if (!Path.GetExtension(path).Equals(".csv"))
+                {
+                    throw new CensusAnalyserException("file type incorrect");
+                }
                 string[] data = File.ReadAllLines(path);
                 IEnumerable<string> ele = data;
                 foreach (var elements in data)
@@ -21,6 +25,10 @@ namespace CensusAnalyser
             catch (FileNotFoundException)
             {
                 throw new CensusAnalyserException("file incorrect");
+            }
+            catch (CensusAnalyserException)
+            {
+                throw;
             }
         }
     }
