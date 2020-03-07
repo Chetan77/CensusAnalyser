@@ -63,6 +63,8 @@ namespace CensusAnalyserTestUnit
 
         private string stateCodePath=@"C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyser\FileData\StateCode.csv";
         private string stateCodePathfileIncorrect = @"C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyser\FileData\SeCode.csv";
+        private string stateCodePathFileTypeIncorrect = @"C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyser\FileData\StateCode.pdf";
+
 
         [Test]
         public void GivenCSVStateCodeFile_WhenAnalyse_ReturnNumberOfRecordsMatch()
@@ -76,6 +78,13 @@ namespace CensusAnalyserTestUnit
         {
             var value = Assert.Throws<CensusAnalyserException>(() => CSVStates.GetRecordsFromStateCodeCSV(stateCodePathfileIncorrect));
             Assert.AreEqual("file incorrect", value.GetMessage);
+        }
+
+        [Test]
+        public void GivenTheCSVStatecodeFileTypeIncorrect_WhenAnalyse_ThrowCensusAnalyserException()
+        {
+            var typeIncorrect = Assert.Throws<CensusAnalyserException>(() => CSVStates.GetRecordsFromStateCodeCSV(stateCodePathFileTypeIncorrect));
+            Assert.AreEqual("file type incorrect", typeIncorrect.GetMessage);
         }
     }
 }
