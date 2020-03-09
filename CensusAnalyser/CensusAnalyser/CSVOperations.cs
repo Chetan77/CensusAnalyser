@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using static CensusAnalyser.CSVStates;
 
 namespace CensusAnalyser
 {
-    class CSVOperations
+    public class CSVOperations
     {
+       
         public static bool CheckForDelimiter(string[] fileData, char delimiter)
         {
             try
@@ -80,5 +82,6 @@ namespace CensusAnalyser
             }
             return count;
         }
+        
     }
 }

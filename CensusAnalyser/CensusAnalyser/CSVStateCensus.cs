@@ -4,10 +4,11 @@ using System.IO;
 
 namespace CensusAnalyser
 {
-    public class CSVStateCensus
+    public class CSVStateCensus : CSVBuilder
     {
         public delegate int GetCSVCount(string path, char delimiter = ',', string header = "State,Population,AreaInSqKm,DensityPerSqKm");
-        public static int ToGetDataFromCSVFileUsigEnumerator(string path,char delimiter=',',string header="State,Population,AreaInSqKm,DensityPerSqKm")
+        
+        public int ToGetDataFromCSVFile(string path, char delimiter = ',', string header = "State,Population,AreaInSqKm,DensityPerSqKm")
         {
             try
             {

@@ -5,10 +5,11 @@ using System.Text;
 
 namespace CensusAnalyser
 {
-    public class CSVStates
+    public class CSVStates : CSVBuilder
     {
-        public delegate int GetCountFromCSVSates(string path, char delimiter = ',', string header = "SrNo,State,Name,TIN,StateCode");
-        public static int GetRecordsFromStateCodeCSV(string path, char delimiter = ',', string header = "SrNo,State,Name,TIN,StateCode")
+        public delegate int ReferToCSVSates(string path, char delimiter = ',', string header = "SrNo,State,Name,TIN,StateCode");
+
+        public int ToGetDataFromCSVFile(string path, char delimiter = ',', string header = "State,Population,AreaInSqKm,DensityPerSqKm")
         {
             try
             {
@@ -16,7 +17,7 @@ namespace CensusAnalyser
                 string[] records = CSVOperations.ReadCSVFile(path);
                 bool delimit = CSVOperations.CheckForDelimiter(records, delimiter);
                 bool head = CSVOperations.CheckForHeader(records, header);
-                int count=CSVOperations.CountRecords(records);
+                int count = CSVOperations.CountRecords(records);
                 return count;
             }
             catch (Exception)
@@ -24,6 +25,5 @@ namespace CensusAnalyser
                 throw;
             }
         }
-       
     }
 }
