@@ -72,24 +72,15 @@ namespace CensusAnalyser
                 throw new CensusAnalyserException("file incorrect");
             }
         }
+
         public static int CountRecords(string[] records)
         {
-            int count = 0;
-            foreach (string str in records)
-            {
-                count++;
-            }
-            return count;
+            List<string> list = new List<string>();
+                foreach (string str in records)
+                {
+                    list.Add(str);
+                }
+            return list.Count;
         }
-        public static List<string> AddToList(string[] arr)
-        {
-            List<string> li = new List<string>();
-            foreach(string str in arr)
-            {
-                li.Add(str);
-            }
-            return li;
-        }
-        
     }
 }
