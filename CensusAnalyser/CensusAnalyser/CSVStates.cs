@@ -5,19 +5,20 @@ using System.Text;
 
 namespace CensusAnalyser
 {
-    public class CSVStates : CSVBuilder
+    public class CSVStates : ICSVBuilder
     {
-        public delegate int ReferToCSVSates(string path, char delimiter = ',', string header = "SrNo,State,Name,TIN,StateCode");
+        public delegate int ReferToCSVSates();
 
-        public int ToGetDataFromCSVFile(string path, char delimiter = ',', string header = "State,Population,AreaInSqKm,DensityPerSqKm")
+        CSVBuilder cSVBuilder = new CSVBuilder();
+        public int ToGetDataFromCSVFile()
         {
             try
             {
-                bool type = CSVOperations.CheckFileType(path, ".csv");
-                string[] records = CSVOperations.ReadCSVFile(path);
-                bool delimit = CSVOperations.CheckForDelimiter(records, delimiter);
-                bool head = CSVOperations.CheckForHeader(records, header);
-                int count = CSVOperations.CountRecords(records);
+                string pa = cSVBuilder.Path;
+                char del = cSVBuilder.Delimeter;
+                string header = cSVBuilder.Header;
+               
+                int count = CSVOperations.CountRecords(cSVBuilder.Records);
                 return count;
             }
             catch (Exception)

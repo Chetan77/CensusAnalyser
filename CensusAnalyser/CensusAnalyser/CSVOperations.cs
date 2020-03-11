@@ -75,12 +75,20 @@ namespace CensusAnalyser
         public static int CountRecords(string[] records)
         {
             int count = 0;
-            IEnumerable<string> enumerator = records;
-            foreach (string str in enumerator)
+            foreach (string str in records)
             {
                 count++;
             }
             return count;
+        }
+        public static List<string> AddToList(string[] arr)
+        {
+            List<string> li = new List<string>();
+            foreach(string str in arr)
+            {
+                li.Add(str);
+            }
+            return li;
         }
         
     }
