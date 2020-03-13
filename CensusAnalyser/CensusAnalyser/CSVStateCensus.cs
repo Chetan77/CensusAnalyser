@@ -15,7 +15,8 @@ namespace CensusAnalyser
                 string pa = cSVBuilder.Path;
                 char del = cSVBuilder.Delimeter;
                 string header = cSVBuilder.Header;
-               
+                
+
                 int count = CSVOperations.CountRecords(cSVBuilder.Records);
                 return count;
             }

@@ -15,7 +15,7 @@ namespace CensusAnalyser
         public int GetRecordsFromCSVFile(string path)
         {
             string[] array = File.ReadAllLines(path);
-            return array.Length;
+            return array.Length-1;
         }
 
         public static string SortCSVFileWriteInJsonAndReturnFirstData(string filePath, string jsonFilepath, string key)
