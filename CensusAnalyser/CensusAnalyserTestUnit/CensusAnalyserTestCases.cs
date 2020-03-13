@@ -167,7 +167,6 @@ namespace CensusAnalyserTestUnit
             Assert.AreEqual("West Bengal", lastValue);
         }
 
-
         /// <summary>
         /// Givens the first state of the CSV state code and json path to add into j son after sorting when analyse return
         /// </summary>
@@ -186,6 +185,16 @@ namespace CensusAnalyserTestUnit
         {
             string lastValue = StateCensusAnalyser.SortCSVFileWriteInJsonAndReturnLastData(stateCodePath, jsonCsvStateCodepathjson, "StateCode");
             Assert.AreEqual("WB", lastValue);
+        }
+
+        /// <summary>
+        /// Given the CSV state census and json to sort from most populous to least when analyse return the number of satetes sorted.
+        /// </summary>
+        [Test]
+        public void GivenCsvStateCensusAndJson_ToSortFromMostPopulousToLeast_WhenAnalyse_ReturnTheNumberOfSatetesSorted()
+        {
+            int count = StateCensusAnalyser.SortCSVFileWriteInJsonAndReturnNumberOfStatesSorted(stateCensusDatapath, jsonCsvStateCodepathjson, "Population");
+            Assert.NotZero(count);
         }
     }
 }

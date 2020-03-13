@@ -33,11 +33,6 @@ namespace CensusAnalyser
             GetCSVCount getCSVCount = new GetCSVCount(csvStateCensus.ToGetDataFromCSVFile);
             return getCSVCount;
         }
-        public static ReferToCSVSates Delegate()
-        {
-            CSVStates cSVStates = InstanceOfCSVStates();
-            ReferToCSVSates referToCSVSates = new ReferToCSVSates(cSVStates.ToGetDataFromCSVFile);
-            return referToCSVSates;
-        }
+        
     }
 }

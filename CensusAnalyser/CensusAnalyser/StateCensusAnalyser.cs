@@ -54,5 +54,20 @@ namespace CensusAnalyser
 
             return CSVOperations.RetriveLastDataOnKey(jsonFilepath, key);
         }
+        public static int SortCSVFileWriteInJsonAndReturnNumberOfStatesSorted(string filePath, string jsonFilepath, string key)
+        {
+            string re = File.ReadAllText(filePath);
+            StringBuilder sb = new StringBuilder();
+            using (var p = ChoCSVReader.LoadText(re)
+                .WithFirstLineHeader()
+                )
+            {
+                using (var w = new ChoJSONWriter(sb))
+                    w.Write(p);
+            }
+            File.WriteAllText(jsonFilepath, sb.ToString());
+            int count = CSVOperations.SortJsonBasedOnKeyAndReturnNumberOfStatesSorted(jsonFilepath, key);
+            return count;
+        }
     }
 }
