@@ -166,5 +166,12 @@ namespace CensusAnalyserTestUnit
             string lastValue = StateCensusAnalyser.SortCSVFileWriteInJsonAndReturnLastData(stateCensusDatapath, jsonCsvStateCensuspathjson, "State");
             Assert.AreEqual("West Bengal", lastValue);
         }
+
+        [Test]
+        public void GivenCSVStateCodeAndJsonPathToAddIntoJSon_AfterSorting_WhenAnalyse_ReturnFirstState()
+        {
+            string firstValue = StateCensusAnalyser.SortCSVFileWriteInJsonAndReturnFirstData(stateCodePath, jsonCsvStateCodepathjson, "StateCode");
+            Assert.AreEqual("AD", firstValue);
+        }
     }
 }
