@@ -167,11 +167,25 @@ namespace CensusAnalyserTestUnit
             Assert.AreEqual("West Bengal", lastValue);
         }
 
+
+        /// <summary>
+        /// Givens the first state of the CSV state code and json path to add into j son after sorting when analyse return
+        /// </summary>
         [Test]
         public void GivenCSVStateCodeAndJsonPathToAddIntoJSon_AfterSorting_WhenAnalyse_ReturnFirstState()
         {
             string firstValue = StateCensusAnalyser.SortCSVFileWriteInJsonAndReturnFirstData(stateCodePath, jsonCsvStateCodepathjson, "StateCode");
             Assert.AreEqual("AD", firstValue);
+        }
+
+        /// <summary>
+        /// Givens the state of the CSV state code and json path to add into j son after sorting when analyse returnlast
+        /// </summary>
+        [Test]
+        public void GivenCSVStateCodeAndJsonPathToAddIntoJSon_AfterSorting_WhenAnalyse_ReturnlastState()
+        {
+            string lastValue = StateCensusAnalyser.SortCSVFileWriteInJsonAndReturnLastData(stateCodePath, jsonCsvStateCodepathjson, "StateCode");
+            Assert.AreEqual("WB", lastValue);
         }
     }
 }
