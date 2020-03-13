@@ -77,7 +77,7 @@ namespace CensusAnalyserTestUnit
             Assert.AreEqual("incorrect header", headerIncorrect.GetMessage);
         }
 
-        ReferToCSVSates referToCSVSates = CSVFactory.Delegate();
+        //ReferToCSVSates referToCSVSates = CSVFactory.Delegate();
         /*CSVStates cSVStates = new CSVStates(); 
         GetCountFromCSVSates getCountFromCSVSates = new GetCountFromCSVSates(cSVStates.ToGetDataFromCSVFile); */
         private string stateCodePath=@"C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyser\FileData\StateCode.csv";
@@ -93,7 +93,7 @@ namespace CensusAnalyserTestUnit
         {
             cSVBuilder = new CSVBuilder(stateCodePath, ',', "SrNo,State Name,TIN,StateCode");
             int count1 = GetCountFromStateCensusAnalyser(stateCodePath);
-            int count2 = referToCSVSates();
+            int count2 = csvstatecensus();
             Assert.AreEqual(count1, count2);
         }
 
@@ -105,7 +105,7 @@ namespace CensusAnalyserTestUnit
         public void GivenTheCSVStatecodeFileIncorrect_WhenAnalyse_ThrowCensusAnalyserException()
         {
             cSVBuilder = new CSVBuilder(stateCodePathfileIncorrect, ',', "SrNo,State,Name,TIN,StateCode");
-            var value = Assert.Throws<CensusAnalyserException>(() => referToCSVSates());
+            var value = Assert.Throws<CensusAnalyserException>(() => csvstatecensus());
             Assert.AreEqual("file incorrect", value.GetMessage);
         }
 
@@ -117,7 +117,7 @@ namespace CensusAnalyserTestUnit
         public void GivenTheCSVStatecodeFileTypeIncorrect_WhenAnalyse_ThrowCensusAnalyserException()
         {
             cSVBuilder = new CSVBuilder(stateCodePathFileTypeIncorrect, ',', "SrNo,State,Name,TIN,StateCode");
-            var typeIncorrect = Assert.Throws<CensusAnalyserException>(() => referToCSVSates());
+            var typeIncorrect = Assert.Throws<CensusAnalyserException>(() => csvstatecensus());
             Assert.AreEqual("file type incorrect", typeIncorrect.GetMessage);
         }
 
@@ -129,7 +129,7 @@ namespace CensusAnalyserTestUnit
         public void GivenTheCSVStatecodefileDelimiterIncorrect_WhenAnalyse_ThrowcensusAnalyserException()
         {
             cSVBuilder = new CSVBuilder(stateCodePath, '.', "SrNo,State,Name,TIN,StateCode");
-            var delimiterIncorrect = Assert.Throws<CensusAnalyserException>(() => referToCSVSates());
+            var delimiterIncorrect = Assert.Throws<CensusAnalyserException>(() => csvstatecensus());
             Assert.AreEqual("incorrect delimiter", delimiterIncorrect.GetMessage);
         }
 
@@ -141,7 +141,7 @@ namespace CensusAnalyserTestUnit
         public void GivenTheCSVStateCodeFileHeaderIncorrect_WhenAnalyse_ThrowCensusAnalyserException()
         {
             cSVBuilder = new CSVBuilder(stateCodePath, ',', "SrNo,,TIN,StateCode");
-            var headerIncorrect = Assert.Throws<CensusAnalyserException>(() => referToCSVSates());
+            var headerIncorrect = Assert.Throws<CensusAnalyserException>(() => csvstatecensus());
             Assert.AreEqual("incorrect header", headerIncorrect.GetMessage);
         }
         private static string jsonCsvStateCensuspathjson = @"C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyser\JsonFiles\CSVStateCensusData.json";
