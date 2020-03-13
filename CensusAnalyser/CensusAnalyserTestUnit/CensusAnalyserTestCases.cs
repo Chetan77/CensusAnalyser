@@ -196,5 +196,16 @@ namespace CensusAnalyserTestUnit
             int count = StateCensusAnalyser.SortCSVFileWriteInJsonAndReturnNumberOfStatesSorted(stateCensusDatapath, jsonCsvStateCodepathjson, "Population");
             Assert.NotZero(count);
         }
+
+        /// <summary>
+        /// Givens the state of the CSV and json path to add into j son after sorting on density when analyse returnlast.
+        /// </summary> 
+        [Test]
+        public void GivenCSVAndJsonPathToAddIntoJSon_AfterSortingOnDensity_WhenAnalyse_ReturnlastState()
+        {
+            string lastValue = StateCensusAnalyser.SortCSVFileWriteInJsonAndReturnLastData(stateCensusDatapath, jsonCsvStateCensuspathjson, "DensityPerSqKm");
+            Assert.AreEqual("86", lastValue);
+        }
+
     }
 }
