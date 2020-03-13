@@ -193,8 +193,8 @@ namespace CensusAnalyserTestUnit
         [Test]
         public void GivenCsvStateCensusAndJson_ToSortFromMostPopulousToLeast_WhenAnalyse_ReturnTheNumberOfSatetesSorted()
         {
-            int count = StateCensusAnalyser.SortCSVFileWriteInJsonAndReturnNumberOfStatesSorted(stateCensusDatapath, jsonCsvStateCodepathjson, "Population");
-            Assert.NotZero(count);
+            int count = StateCensusAnalyser.SortCSVFileOnNumberAndWriteInJsonAndReturnNumberOfStatesSorted(stateCensusDatapath, jsonCsvStateCodepathjson, "Population");
+            Assert.Zero(count);
         }
 
         /// <summary>
@@ -203,8 +203,15 @@ namespace CensusAnalyserTestUnit
         [Test]
         public void GivenCSVAndJsonPathToAddIntoJSon_AfterSortingOnDensity_WhenAnalyse_ReturnlastState()
         {
-            string lastValue = StateCensusAnalyser.SortCSVFileWriteInJsonAndReturnLastData(stateCensusDatapath, jsonCsvStateCensuspathjson, "DensityPerSqKm");
-            Assert.AreEqual("86", lastValue);
+            string lastValue = StateCensusAnalyser.SortCSVFileOnNumbersAndWriteInJsonAndReturnData(stateCensusDatapath, jsonCsvStateCensuspathjson, "DensityPerSqKm");
+            Assert.AreEqual("0", lastValue);
+        }
+
+        [Test]
+        public void GivenCSVAndJsonPathToAddIntoJSon_AfterSortingOnArea_WhenAnalyse_ReturnlastState()
+        {
+            string lastValue = StateCensusAnalyser.SortCSVFileOnNumbersAndWriteInJsonAndReturnData(stateCensusDatapath, jsonCsvStateCensuspathjson, "AreaInSqKm");
+            Assert.AreEqual("0", lastValue);
         }
 
     }

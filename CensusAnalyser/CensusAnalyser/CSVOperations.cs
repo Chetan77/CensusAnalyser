@@ -139,7 +139,7 @@ namespace CensusAnalyser
             {
                 for (int j = 0; j < stateCensusrrary.Count - i - 1; j++)
                 {
-                    if (stateCensusrrary[j][key].ToString().CompareTo(stateCensusrrary[j + 1][key].ToString()) > 0)
+                    if ((int)stateCensusrrary[j][key] < (int)stateCensusrrary[j + 1][key])
                     {
                         var tamp = stateCensusrrary[j + 1];
                         stateCensusrrary[j + 1] = stateCensusrrary[j];
@@ -149,6 +149,24 @@ namespace CensusAnalyser
                 }
             }
             return count;
+        }
+        public static JArray SortJsonBasedOnKeyAndValueIsNumber(string jsonPath, string key)
+        {
+            string jsonFile = File.ReadAllText(jsonPath);
+            JArray stateCensusrrary = JArray.Parse(jsonFile);
+            for (int i = 0; i < stateCensusrrary.Count - 1; i++)
+            {
+                for (int j = 0; j < stateCensusrrary.Count - i - 1; j++)
+                {
+                    if ((int)stateCensusrrary[j][key] < (int)stateCensusrrary[j + 1][key])
+                    {
+                        var tamp = stateCensusrrary[j + 1];
+                        stateCensusrrary[j + 1] = stateCensusrrary[j];
+                        stateCensusrrary[j] = tamp;
+                    }
+                }
+            }
+            return stateCensusrrary;
         }
     }
 }

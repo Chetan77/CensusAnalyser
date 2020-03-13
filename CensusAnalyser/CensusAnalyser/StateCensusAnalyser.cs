@@ -54,7 +54,33 @@ namespace CensusAnalyser
 
             return CSVOperations.RetriveLastDataOnKey(jsonFilepath, key);
         }
-        public static int SortCSVFileWriteInJsonAndReturnNumberOfStatesSorted(string filePath, string jsonFilepath, string key)
+
+        public static string SortCSVFileOnNumbersAndWriteInJsonAndReturnData(string filePath, string jsonFilepath, string key)
+        {
+            string re = File.ReadAllText(filePath);
+            StringBuilder sb = new StringBuilder();
+            using (var p = ChoCSVReader.LoadText(re)
+                .WithFirstLineHeader()
+                )
+            {
+                using (var w = new ChoJSONWriter(sb))
+                    w.Write(p);
+            }
+            File.WriteAllText(jsonFilepath, sb.ToString());
+            JArray arr = CSVOperations.SortJsonBasedOnKeyAndValueIsNumber(jsonFilepath, key);
+            var jsonArr = JsonConvert.SerializeObject(arr, Formatting.Indented);
+            File.WriteAllText(jsonFilepath, jsonArr);
+
+            return CSVOperations.RetriveLastDataOnKey(jsonFilepath, key);
+        }
+        /// <summary>
+        /// Sorts the CSV file write in json and return number of states sorted.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <param name="jsonFilepath">The json filepath.</param>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
+        public static int SortCSVFileOnNumberAndWriteInJsonAndReturnNumberOfStatesSorted(string filePath, string jsonFilepath, string key)
         {
             string re = File.ReadAllText(filePath);
             StringBuilder sb = new StringBuilder();
