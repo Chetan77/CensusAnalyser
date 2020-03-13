@@ -11,7 +11,7 @@ namespace CensusAnalyserTestUnit
         GetCountFromStateCensusAnalyser GetCountFromStateCensusAnalyser= CSVFactory.DelegateofStateCensusAnalyser();
 
         GetCSVCount csvstatecensus = CSVFactory.DelegateOfCSvStateCensus();
-        private string path = @"C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyser\FileData\StateCensusData.csv";
+        private string stateCensusDatapath = @"C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyser\FileData\StateCensusData.csv";
         private string fileIncorrect= @"C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyser\FileData\StateCusData.csv";
         private string fileTypeIncorrect = @"C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyser\FileData\StateCensusData.txt";
         CSVBuilder cSVBuilder;
@@ -23,8 +23,8 @@ namespace CensusAnalyserTestUnit
         [Test]
         public void GiventheStatesCensusCSVfile_WhenAnalyse_ShouldRecordNumberOfRecordmatches()
         {
-            cSVBuilder = new CSVBuilder(path, ',', "State,Population,AreaInSqKm,DensityPerSqKm");
-            int count1 = GetCountFromStateCensusAnalyser(path);
+            cSVBuilder = new CSVBuilder(stateCensusDatapath, ',', "State,Population,AreaInSqKm,DensityPerSqKm");
+            int count1 = GetCountFromStateCensusAnalyser(stateCensusDatapath);
             int count2 = csvstatecensus();
             Assert.AreEqual(count1, count2);
         }
@@ -60,7 +60,7 @@ namespace CensusAnalyserTestUnit
         [Test]
         public void GivenTheStateCesnusCsvFileDelimiterIncorrect_WhenAnalyse_ThrowcensusAnalyserException()
         {
-            cSVBuilder = new CSVBuilder(path, '.', "State,Population,AreaInSqKm,DensityPerSqKm");
+            cSVBuilder = new CSVBuilder(stateCensusDatapath, '.', "State,Population,AreaInSqKm,DensityPerSqKm");
             var delimiterIncorrect = Assert.Throws<CensusAnalyserException>(() => csvstatecensus());
             Assert.AreEqual("incorrect delimiter", delimiterIncorrect.GetMessage);
         }
@@ -72,7 +72,7 @@ namespace CensusAnalyserTestUnit
         [Test]
         public void GivenTheStateCensusCsvFileHeaderIncorrect_WhenAnalyse_ThrowCensusAnalyserException()
         {
-            cSVBuilder = new CSVBuilder(path, ',', "State,Popula tyPerSqKm");
+            cSVBuilder = new CSVBuilder(stateCensusDatapath, ',', "State,Popula tyPerSqKm");
             var headerIncorrect = Assert.Throws<CensusAnalyserException>(() => csvstatecensus());
             Assert.AreEqual("incorrect header", headerIncorrect.GetMessage);
         }
@@ -91,7 +91,7 @@ namespace CensusAnalyserTestUnit
         [Test]
         public void GivenCSVStateCodeFile_WhenAnalyse_ReturnNumberOfRecordsMatch()
         {
-            cSVBuilder = new CSVBuilder(stateCodePath, ',', "SrNo,State,Name,TIN,StateCode");
+            cSVBuilder = new CSVBuilder(stateCodePath, ',', "SrNo,State Name,TIN,StateCode");
             int count1 = GetCountFromStateCensusAnalyser(stateCodePath);
             int count2 = referToCSVSates();
             Assert.AreEqual(count1, count2);
@@ -143,6 +143,18 @@ namespace CensusAnalyserTestUnit
             cSVBuilder = new CSVBuilder(stateCodePath, ',', "SrNo,,TIN,StateCode");
             var headerIncorrect = Assert.Throws<CensusAnalyserException>(() => referToCSVSates());
             Assert.AreEqual("incorrect header", headerIncorrect.GetMessage);
+        }
+        private static string jsonCsvStateCensuspathjson = @"C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyser\JsonFiles\CSVStateCensusData.json";
+        private static string jsonCsvStateCodepathjson = @"C:\Users\Admin\source\Chetan\CensusAnalyser\CensusAnalyser\JsonFiles\StateCode.json";
+
+        /// <summary>
+        /// Givens the first state of the CSV and json path to add into j son after sorting when analyse return.
+        /// </summary>
+        [Test]
+        public void GivenCSVAndJsonPathToAddIntoJSon_AfterSorting_WhenAnalyse_ReturnFirstState()
+        {
+            string firstValue = StateCensusAnalyser.SortCSVFileWriteInJsonAndReturnFirstData(stateCensusDatapath, jsonCsvStateCensuspathjson, "State");
+            Assert.AreEqual("Andhra Pradesh", firstValue);
         }
     }
 }
